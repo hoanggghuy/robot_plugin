@@ -3,10 +3,26 @@
     <Fallback name="RootFallback">
       
       <Sequence name="ChargeLogic">
-        <IsBatteryLow min_battery="15.0"/> <PipelineSequence name="NavigateToDock">
+        <IsBatteryLow min_battery="15.0"/>
+        
+        <RecoveryNode number_of_retries="10" name="DockingRecovery">
+          
+          <PipelineSequence name="NavigateToDock">
             <ComputePathToPose goal="0.0; 0.0; 0.0" path="{path}" planner_id="GridBased"/>
             <FollowPath path="{path}" controller_id="FollowPath"/>
-        </PipelineSequence>
+          </PipelineSequence>
+
+          <ReactiveFallback name="DockingRecoveryActions">
+            <RoundRobin name="DockingRecoverySteps">
+              <Sequence name="ClearAndSpin">
+                <ClearEntireCostmap name="ClearGlobalCostmap-Dock" service_name="global_costmap/clear_entirely_global_costmap"/>
+                <Spin spin_dist="1.57"/>
+              </Sequence>
+              <Wait wait_duration="5"/>
+            </RoundRobin>
+          </ReactiveFallback>
+
+        </RecoveryNode>
       </Sequence>
 
       <RecoveryNode number_of_retries="6" name="NavigateRecovery">

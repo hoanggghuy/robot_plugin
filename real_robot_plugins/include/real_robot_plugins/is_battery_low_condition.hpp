@@ -13,17 +13,15 @@ class IsBatteryLowCondition : public BT::ConditionNode
 public:
   IsBatteryLowCondition(const std::string & name, const BT::NodeConfiguration & config);
 
-  // Định nghĩa các cổng dữ liệu vào/ra cho XML
   static BT::PortsList providedPorts()
   {
     return { BT::InputPort<float>("min_battery", 10.0, "Ngưỡng pin (%)") };
   }
 
-  // Hàm chạy chính của Node
   BT::NodeStatus tick() override;
 
 private:
-  // Callback để nhận dữ liệu từ topic /battery_state
+
   void batteryCallback(const sensor_msgs::msg::BatteryState::SharedPtr msg);
 
   rclcpp::Subscription<sensor_msgs::msg::BatteryState>::SharedPtr battery_sub_;

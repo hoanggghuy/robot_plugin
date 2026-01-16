@@ -17,7 +17,7 @@ IsBatteryLowCondition::IsBatteryLowCondition(
 
 void IsBatteryLowCondition::batteryCallback(const sensor_msgs::msg::BatteryState::SharedPtr msg)
 {
-  // BatteryState.percentage thường từ 0.0 đến 1.0
+
   last_battery_percentage_ = msg->percentage * 100.0;
 }
 
@@ -37,7 +37,7 @@ BT::NodeStatus IsBatteryLowCondition::tick()
 }
 } 
 
-// Đăng ký Plugin để Nav2 có thể nhận diện
+// Đăng ký Plugin 
 BT_REGISTER_NODES(factory)
 {
   factory.registerNodeType<real_robot_plugins::IsBatteryLowCondition>("IsBatteryLow");
