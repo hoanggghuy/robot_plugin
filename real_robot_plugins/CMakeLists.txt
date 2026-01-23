@@ -25,7 +25,10 @@ ament_target_dependencies(is_battery_low_condition_bt_node
 )
 
 install(TARGETS is_battery_low_condition_bt_node
-  DESTINATION lib/${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib  
+  RUNTIME DESTINATION bin
 )
-
+ament_export_libraries(is_battery_low_condition_bt_node)
+target_compile_definitions(is_battery_low_condition_bt_node PRIVATE BT_PLUGIN_EXPORT)
 ament_package()

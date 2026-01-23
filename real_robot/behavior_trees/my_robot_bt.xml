@@ -1,6 +1,6 @@
 <root main_tree_to_execute="MainTree">
   <BehaviorTree ID="MainTree">
-    <Fallback name="RootFallback">
+    <ReactiveFallback name="RootFallback">
       
       <Sequence name="ChargeLogic">
         <IsBatteryLow min_battery="15.0"/>
@@ -52,6 +52,6 @@
           </RoundRobin>
         </ReactiveFallback>
       </RecoveryNode>
-      </Fallback>
+      </ReactiveFallback>
   </BehaviorTree>
 </root>

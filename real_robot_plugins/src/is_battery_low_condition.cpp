@@ -11,7 +11,7 @@ IsBatteryLowCondition::IsBatteryLowCondition(
   auto node = config.blackboard->get<rclcpp::Node::SharedPtr>("node");
 
   battery_sub_ = node->create_subscription<sensor_msgs::msg::BatteryState>(
-    "/battery_state", 10,
+    "/battery_status", 10,
     std::bind(&IsBatteryLowCondition::batteryCallback, this, std::placeholders::_1));
 }
 
@@ -37,8 +37,8 @@ BT::NodeStatus IsBatteryLowCondition::tick()
 }
 } 
 
-// Đăng ký Plugin 
-BT_REGISTER_NODES(factory)
+extern "C" __attribute__ ((visibility ("default"))) 
+void BT_RegisterNodesFromPlugin(BT::BehaviorTreeFactory& factory)
 {
-  factory.registerNodeType<real_robot_plugins::IsBatteryLowCondition>("IsBatteryLow");
+  factory.registerNodeType<real_robot_plugins::IsBatteryLowCondition>("IsBatteryLowwww");
 }
