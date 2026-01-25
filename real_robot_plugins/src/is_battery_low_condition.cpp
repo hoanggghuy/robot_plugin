@@ -40,5 +40,5 @@ BT::NodeStatus IsBatteryLowCondition::tick()
 extern "C" __attribute__ ((visibility ("default"))) 
 void BT_RegisterNodesFromPlugin(BT::BehaviorTreeFactory& factory)
 {
-  factory.registerNodeType<real_robot_plugins::IsBatteryLowCondition>("IsBatteryLowwww");
+  factory.registerNodeType<real_robot_plugins::IsBatteryLowCondition>("IsBatteryLow");
 }
