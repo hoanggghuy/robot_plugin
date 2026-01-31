@@ -11,14 +11,14 @@ bt_navigator:
     plugin_lib_names:
       # Custom plugins
       - is_battery_low_condition_bt_node
-      
+      - is_stop_command
       # Action plugins 
       - nav2_compute_path_to_pose_action_bt_node
       - nav2_follow_path_action_bt_node
       - nav2_spin_action_bt_node
       - nav2_wait_action_bt_node
       - nav2_back_up_action_bt_node
-      - nav2_compute_path_through_poses_action_bt_node # <-- Nên thêm cả cái này nếu dùng navigate_through_poses
+      - nav2_compute_path_through_poses_action_bt_node 
       - nav2_remove_passed_goals_action_bt_node
       
       # Service plugins
