@@ -12,6 +12,8 @@ bt_navigator:
       # Custom plugins
       - is_battery_low_condition_bt_node
       - is_stop_command
+      - is_elevator_door_open_bt_node
+      - load_new_map_bt_node
       # Action plugins 
       - nav2_compute_path_to_pose_action_bt_node
       - nav2_follow_path_action_bt_node

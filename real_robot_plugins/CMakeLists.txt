@@ -79,4 +79,23 @@ install(TARGETS is_elevator_door_open_bt_node
 )
 ament_export_libraries(is_elevator_door_open_bt_node)
 target_compile_definitions(is_elevator_door_open_bt_node PRIVATE BT_PLUGIN_EXPORT)
+
+add_library(load_new_map_bt_node SHARED
+  src/load_new_map.cpp
+)
+target_include_directories(load_new_map_bt_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+ament_target_dependencies(load_new_map_bt_node
+  rclcpp
+  nav2_msgs
+  geometry_msgs
+  tf2
+  behaviortree_cpp_v3
+  nav2_behavior_tree
+)
+ament_export_libraries(load_new_map_bt_node)
+target_compile_definitions(load_new_map_bt_node PRIVATE BT_PLUGIN_EXPORT)
+
 ament_package()
