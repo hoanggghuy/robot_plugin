@@ -56,4 +56,27 @@ install(TARGETS is_stop_command
 ament_export_libraries(is_stop_command)
 target_compile_definitions(is_stop_command PRIVATE BT_PLUGIN_EXPORT)
 
+add_library(is_elevator_door_open_bt_node SHARED
+  src/is_elevator_door_open.cpp
+)
+
+target_include_directories(is_elevator_door_open_bt_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+ament_target_dependencies(is_elevator_door_open_bt_node
+  rclcpp
+  sensor_msgs
+  behaviortree_cpp_v3
+  nav2_behavior_tree
+)
+
+install(TARGETS is_elevator_door_open_bt_node
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib  
+  RUNTIME DESTINATION bin
+)
+ament_export_libraries(is_elevator_door_open_bt_node)
+target_compile_definitions(is_elevator_door_open_bt_node PRIVATE BT_PLUGIN_EXPORT)
 ament_package()
